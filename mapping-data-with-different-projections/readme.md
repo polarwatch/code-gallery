@@ -5,7 +5,6 @@
 >
 >history | Created Mar 2023
 >
->contact | Sunny Hospital (sun.bak-hospital@noaa.gov)
 
 **Directory structure**
 
@@ -15,9 +14,9 @@
 
 **Content**
 
--  python notebook file: mapping-with-different-projections.ipynb
--  r markdown file: mapping-with-different-projections.Rmd
--  r html file: 
+-  python notebook file: Python/mapping-data-with-different-projections.ipynb
+-  r markdown file: R/mapping-with-different-projections.Rmd
+-  r md file:  R/mapping-with-different-projections.Rmd
 -  data file : data/PB_Argos.csv
 
 
