@@ -4,7 +4,6 @@ output: html_document
 ---
 
 > history \| Create March 2023 <br/>
-> contact \| Sunny Hospital (sun.bak-hospital@noaa.gov)<br/>
 
 <a href="https://polarwatch.noaa.gov/" target="_blank">NOAA PolarWatch</a> distributes gridded and tabular oceanographic data for polar regions.  Satellite data include geospatial information and most of them are in geographical coordinates (latitude and longitude).  PolarWatch satellite data are often projected using <a href="https://nsidc.org/data/user-resources/help-center/guide-nsidcs-polar-stereographic-projection" target="_blank">Polar Stereographic Projections</a> in x and y coordinates.
 
@@ -74,11 +73,11 @@ The time series data product includes data from 1978 to present.  The dataset we
 
 ```{r}
 # download the sea ice data NetCDF file
-seaice_url <- 'https://polarwatch.noaa.gov/erddap/griddap/nsidcG02202v4nhmday.nc?cdr_seaice_conc_monthly'
+seaice_url <- "https://polarwatch.noaa.gov/erddap/griddap/nsidcG02202v4nhmday.nc?cdr_seaice_conc_monthly[(2022-12-01T00:00:00Z):1:(2022-12-01T00:00:00Z)][(4851137.11):1:(-4850758.92)][(-3850000.0):1:(3750000.0)]"
 sea_ice_data_nc <- download.file(seaice_url, destfile="../data/sea_ice_data.nc", mode='wb')
 
 # file open
-seaice <- nc_open('sea_ice_data.nc')
+seaice <- nc_open('../data/sea_ice_data.nc')
 
 # print metadata
 #print(seaice)
