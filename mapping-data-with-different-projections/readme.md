@@ -3,20 +3,20 @@
 ## Mapping data with Polarstereographic projection using Python and R
 >NOAA CoastWatch/PolarWatch
 >
->history | Created Mar 2023
+>history | Created Jul 2023
 >
 
 **Directory structure**
 
-- **R/**  includes R markdown (Rmd) file
+- **R/**  includes R markdown (Rmd) and markdown (md) file
 - **Python/**  includes Python notebook (ipynb) file
-- **data/**  includes polar bear argos tracking data, a netcdf data downloaded from R code
+- **data/**  includes polar bear argos tracking data
 
 **Content**
 
 -  python notebook file: Python/mapping-data-with-different-projections.ipynb
--  r markdown file: R/mapping-with-different-projections.Rmd
--  r md file:  R/mapping-with-different-projections.Rmd
+-  r markdown file: R/mapping-data-with-different-projections.Rmd
+-  r md file:  R/mapping-data-with-different-projections.md
 -  data file : data/PB_Argos.csv
 
 
