@@ -4,7 +4,7 @@ This repository includes CoastWatch PolarWatch training materials and resources 
 
 ## Organizational structure
 
-The repository is organized in directory structures catagorized by topics. Within each topic, you will find folders for different languagues such as R and Python.  Organization may differ by topics as additional resources may be necessary.
+The repository is organized in a directory structure and catagorized by topics. Within each topic, you will find folders for different languagues such as R and Python.  Organization may differ by topics as additional resources may be needed.
 
 ## Question?
 
