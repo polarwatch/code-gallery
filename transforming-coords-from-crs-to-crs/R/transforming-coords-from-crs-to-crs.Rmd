@@ -1,6 +1,6 @@
 ---
 title: "Transforming coordinates from crs to crs"
-output: html_document
+output: html_notebook
 ---
 
 > history \| Create July 2023 \| Updated August 2023<br/>
@@ -15,21 +15,26 @@ In this exercise, we will learn to transform coordinates of one projection to an
 **The exercise demonstrates the following techniques:**
 -   Downloading and saving a netcdf file from PolarWatch ERDDAP data server
 -   Accessing satellite data and metadata in polar stereographic projection 
+-   Convert the netcdf data into data.frame
 -   Transforming coordinates using EPSG codes
 -   Mapping data using the transformed coordinates
 
-**Dataset:**
+
+**Datasets **
     
    *Sea Ice Concentration*, NOAA/NSIDC Climate Data Record V4, Southern Hemisphere, 25km, Science Quality, 1978-2022, Monthly
+
 
 **R Packages**
 
 -   ncdf4 (reading data and metadata in netCDF format)
 -   ggplot2, RColorBrewer, scales (mapping)
--   reshape2 (data manipulation)
--   rgdal, sf (projection)
+-   sf (projection)
 
 ### Install required packages
+
+This code block will check if required packages are installed, and will install missing packages.
+
 ```{r setup_packages, message=FALSE, warning=FALSE}
 
 # Function to check if pkgs are installed, install missing pkgs, and load
@@ -42,7 +47,7 @@ pkgTest <- function(x)
   }
 }
 
-list.of.packages <- c("raster", "ncdf4")
+list.of.packages <- c("ncdf4" , "sf", "ggplot2","scales", "RColorBrewer")
 
 # create list of installed packages
 pkges = installed.packages()[,"Package"]
@@ -54,7 +59,9 @@ for (pk in list.of.packages) {
 
 ## Antarctic Sea Ice Concentration Data
 
-The sea ice concentration (SIC) data are percent (proportion) coverage of ice within each grid cell.  The SIC dataset used in this exercise is produced by the NOAA/NSIDC from passive microwave sensors using the Climate Data Record (CDR).  The data are projected in the southern polarstereographic projection (**EPSG:3031**). This sea ice concentration data values in the dataset are represented as proportions ranging from 0 to 1. The resolution is 25km, meaning each grid in this data set represents a value that covers a 25km by 25km area.  Please note that other values beyond 1 represents fill values.  More detailed information can be found in the NSIDC Data Product User Guide (linke below)
+The sea ice concentration data are used to calculate the spatical coverage of sea ice.  The data product in this exercise is sea ice concentration data of the southern hemisphere, and is produced by the NOAA/NSIDC from passive microwave sensors using the Climate Data Record (CDR).  The data are projected in the southern polarstereographic projection (**EPSG:3031**). 
+
+This sea ice concentration data values in the dataset are represented as proportions ranging from 0 to 1. The resolution is 25km, meaning each grid in this data set represents a value that covers a 25km by 25km area.  Please note that other values beyond 1 represents fill values.  More detailed information can be found in the NSIDC Data Product User Guide (linke below)
 
 **Userful links**
 
@@ -63,6 +70,7 @@ The sea ice concentration (SIC) data are percent (proportion) coverage of ice wi
 -   <a href="https://nsidc.org/sites/default/files/g02202-v004-userguide_1_1.pdf" target="_blank">NSIDC Data Product User Guide (pdf)</a>
 
 
+### Get data from ERDDAP 
 ```{r}
 # download the sea ice data NetCDF file
 url <- "https://polarwatch.noaa.gov/erddap/griddap/nsidcG02202v4shmday.nc?cdr_seaice_conc_monthly[(2022-12-01T00:00:00Z):1:(2022-12-01T00:00:00Z)][(4350000.0):1:(-3950000.0)][(-3950000.0):1:(3950000.0)]"
@@ -79,57 +87,64 @@ ds <- nc_open('sic.nc')
 xgrid <- ncvar_get(ds, "xgrid")
 ygrid <- ncvar_get(ds, "ygrid")
 sic <- ncvar_get(ds, "cdr_seaice_conc_monthly")  #lat and lon
+dim(sic)
+
 
 # close 
 nc_close(ds)
 ```
-
-## Transform data to a new CRS
+### Map polar stereographic projected data 
 ```{r}
 
-# create raster
-ext <- extent(min(xgrid), max(xgrid), min(ygrid), max(ygrid))
-rastered_sic <- raster(t(sic)) 
-extent(rastered_sic)<- ext
-names(rastered_sic) <- 'sic'
-# set the crs of the data to 3031 (polar stereographic)
-crs(rastered_sic) <- CRS("+init=epsg:3031")
+# create dataframe
+sicd <- expand.grid(xgrid=xgrid, ygrid=ygrid)
+sicd$sic <- array(sic, dim(xgrid)*dim(ygrid))
 
-# transform to EPSG 4326
-# note: supressWarnings applied as the function throws warning for invalid latitude and longitude
-sic_to_4326 <- suppressWarnings(projectRaster(rastered_sic, crs = "+init=epsg:4326"))
+# exclude fillvalue
+sicd$sic[sicd$sic > 2] <- NA 
 
+# map sea ice concentration
+ggplot(data = sicd, aes(x = xgrid, y = ygrid, fill=sic) ) + 
+       geom_tile() + 
+       coord_fixed(ratio = 1) + 
+       scale_y_continuous(labels=comma) + 
+       scale_x_continuous(labels=comma) +
+       scale_fill_gradientn(colours=rev(brewer.pal(n = 3, name = "Blues")),na.value="tan")+       ggtitle("Sea Ice Concentration on Polar Steregraphic projection")
 ```
 
 
-## Map data with new coordinates on a global map
+## Transforming from CRS to CRS
+
+When transforming from one CRS to another, it is important to inspect CRS definitions and the transformation function for proper transformation.
+We will transform from CRS EPSG: 3031 (NSIDC Polar Stereographic South) to EPSG: 4326 (geographic coordinate system) 
+
 ```{r}
-# transform raster to data frame
-df <- as.data.frame(sic_to_4326, xy=TRUE) 
 
-View(df)
-# get world map
-world_map <- map_data("world")
+xy_sf <- st_as_sf(sicd, coords=c("xgrid", "ygrid"), crs=3031)
+
+# st_transform output order: lat , lon
+latlon_sf <- st_transform(xy_sf, crs=4326)
+
+latlon_df <- as.data.frame(st_coordinates(latlon_sf))
+names(latlon_df) <- c("Lat", "Lon")
+seaiceconc <- sicd$sic
+# create dataframe and add names
+sicdf_latlon <- data.frame(cbind(latlon_df,seaice))
+head(na.omit(sicdf_latlon), 5)
 
 
-ggplot() +
-  geom_raster(data = df, aes(x = x, y = y, fill = layer)) +
-  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), 
-               fill = NA, color = "black") +
-  coord_sf(xlim = c(-180, 180), ylim = c(-90, 90)) +
-  theme_minimal() +
-  labs(fill = "Sea ice concentration")
-ggplot(data = df, aes(x = xgrid, y = ygrid) ) + 
-        geom_tile(aes(fill=sic)) + 
-       coord_fixed(ratio = 1) + 
-       scale_y_continuous(labels = comma) + 
-       scale_x_continuous(labels = comma) +
-       scale_fill_gradientn(colours=rev(brewer.pal(n = 3, name = "Blues")),na.value="tan")+
-       ggtitle("SIC with polar bear tracks on Polar (red) Steregraphic projection")+
-      geom_point(data=df, aes(x=x, y=y), color="red", size=0.5)
-     
+```
+### Plot data with new coordinates on a gloal map
 
-        
+```{r}
+sic_sf <- st_as_sf(sicdf_latlon, coords = c('Lat', 'Lon'))
+st_crs(sic_sf) = "4326"
+
+# plot sea ice concentration on an unprojected map
+ggplot(sic_sf) + geom_sf(aes(color = seaiceconc)) + labs(title = "Sea Ice Concentration of Antarctica")
+
+
+
 ```
 
 
