@@ -1,0 +1,115 @@
+---
+title: Virtual Buoy Example 
+author: NOAA CoastWatch
+date: August 2023
+output:
+  md_document
+---
+
+
+> Updated August 2023 <br/>
+
+There are buoys in many locations around the world that provide data streams of oceanic and atmospheric parameters. The data are often available through data centers like the those National Data Buoy Center (NDBC https://www.ndbc.noaa.gov) and ARGO floats program (http://www.argo.ucsd.edu). In situ buoy data are widely used to monitor environmental conditions.
+
+In the absence of in situ buoy data, whether the buoy operation is discontinued, interrupted, or limited, satellite data with close temporal and spatial coverage can be used to create a dataset in the format of in situ buoy data.
+
+## Objective
+
+This tutorial will demonstration how to transform satellite data to a dataset in an in-situ data format. 
+
+## The tutorial demonstrates the following techniques
+
+-   Downloading and saving a netcdf file from CoastWatch ERDDAP data server
+-   Accessing satellite data and metadata 
+-   Resampling satellite data into a lower resolution timestep
+-   Data-wranging to transform the satellite data into in situ buoy data format
+-   Validating the transformed data with the actual buoy data
+-   Running a linear regression model and generating statistics
+-   Plotting time series data
+
+## Datasets used
+
+-  <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisBLENDEDsstDNDaily.graph">The sea surface temperature (SST) satellite data</a> from NOAA Geo-polar blended analysis are used for transforming to buoy data format
+
+-  <a href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.graph?time%2Cwtmp%2Cwd&station=%2246259%22&time%3E=2020-09-15T00%3A00%3A00Z&time%3C=2022-09-15T00%3A00%3A00Z&.draw=markers&.marker=5%7C5&.color=0x000000&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff"> NDBC Standard Meteorological Buoy Data </a> was used for validating or ground truthing
+
+## References
+
+- <a href="https://coastwatch.pfeg.noaa.gov/data.html">NOAA CoastWatch Westcoast Node Data Catalog</a>
+- <a href="https://www.ndbc.noaa.gov/download_data.php?filename=46259h2017.txt.gz&dir=data/historical/stdme ">NOAA National Data Buoy Center</a>
+
+## Install required packages and load libraries
+```{r install,message=FALSE,warning=FALSE}
+
+# Function to check if pkgs are installed, and install any missing pkgs
+pkgTest <- function(x)
+{
+  if (!require(x,character.only = TRUE))
+  {
+    install.packages(x,dep=TRUE,repos='http://cran.us.r-project.org')
+    if(!require(x,character.only = TRUE)) stop(x, " :Package not found")
+  }
+}
+
+
+# Create list of required packages
+list.of.packages <- c("rerddap", "plotdap", "parsedate", "ggplot2", "rerddapXtracto",
+                       "maps", "mapdata", "RColorBrewer")
+
+# Create list of installed packages
+pkges = installed.packages()[,"Package"]
+
+# Install and load all required pkgs
+for (pk in list.of.packages) {
+  pkgTest(pk)
+}
+
+```
+
+## Download the Sea Surface Temperature (SST) Data
+
+The Sea Surface Temperature (SST) is the NOAA GeoPolar Blended SST dataset (in Celcius) from many satellite sensors to obtain good daily coverage of the globe at 5km resolution, and then an interpollation method is applied to fill in data gaps. 
+
+**Data**
+
+*Sea-Surface Temperature, NOAA Geo-polar Blended Analysis Day+Night, GHRSST,
+Near Real-Time, Global 5km, 2019-Present, Daily*
+
+
+
+## Sending data request to CoastWatch ERDDAP Server
+```{r}
+library('utils')
+
+# Set ERDDAP URL 
+url="https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisBLENDEDsstDNDaily.csv?analysed_sst%5B(2020-01-01T12:00:00Z):1:(last)%5D%5B(34.775):1:(34.775)%5D%5B(-121.475):1:(-121.475)]"
+
+
+# Set file name
+fname = 'sst.csv'
+
+# Download file
+download.file(url, fname)
+
+# Read into data frame, skip the first row
+sst_df <- read.csv(fname, skip=1, header=TRUE)
+
+# Show the first 3 rows
+head(sst_df, 3)
+```
+
+```{r erddap}
+
+# Deleting all cached files
+rerddap::cache_delete_all(force = TRUE)
+
+# Set dataset ID
+dataset <- 'esa-cci-chla-monthly-v6-0'
+
+# Get data information from ERDDAP server
+dataInfo <- rerddap::info(dataset, url= "https://oceanwatch.pifsc.noaa.gov/erddap")
+
+# Display the metadata
+dataInfo
+```
+
