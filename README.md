@@ -1,14 +1,14 @@
 # Code Gallery
 
-This repository includes CoastWatch PolarWatch training materials and resources to demonstrate access and usage of polar satellite data.
+This repository contains code samples that demonstrate how to access and use environmental satellite data from the PolarWatch data server. For additional code samples and tutorials in R and Python, you can visit the <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">CoastWatch Training repository</a>.
 
 ## Organizational structure
 
-The repository is organized in a directory structure and catagorized by topics. Within each topic, you will find folders for different languagues such as R and Python.  Organization may differ by topics as additional resources may be needed.
+The repository is organized into a directory structure and categorized by topics. Within each topic, you'll find folders dedicated to different languages, such as R and Python. The organization might vary among topics, especially if additional resources are required.
 
 ## Question?
 
-If you need any further assistance or questions, please submit an issue on github.
+If you have any further questions or require assistance, please submit an issue here.
 
 
 
