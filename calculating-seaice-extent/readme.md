@@ -1,3 +1,6 @@
 ## Calculating Monthly Sea Ice Extent 
 
-Available in both Python and R, this code sample offers a comprehensive guide to calculating sea ice extent using sea ice concentration data downloaded in NetCDF format from the PolarWatch ERDDAP data server. The code demonstrates how to access and interpret metadata, as well as how to compute monthly sea ice extent with precision.
+A more comprehensive guide and tutorial can be found in the [CoastWatch-Training repository](https://github.com/coastwatch-training/CoastWatch-Tutorials/tree/main/calculate-seaice-extent).
+
+Available in both Python and R, this code samples show how to access data, load them into memory and calculate sea ice extent using sea ice contration data and grid cell area data.  
+
