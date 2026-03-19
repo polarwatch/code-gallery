@@ -2,15 +2,15 @@
 title: "PolarWatch Code Gallery"
 ---
 
-Browse the code examples below.
+Browse selected Python code examples below.
 
 
 :::: {.gallery-grid}
 
 ::: {.gallery-card}
-[![](style/images/stac_thumb.png){alt="STAC thumbnail"}](https://polarwatch.noaa.gov/applications.html){target="_blank" rel="noopener noreferrer"}
+[![](style/images/stac_thumb.png){alt="STAC thumbnail"}](https://github.com/polarwatch/data-proc-utilities/blob/main/python/access_polarwatch_stac.ipynb){target="_blank" rel="noopener noreferrer"}
 
-### [Discover Datasets](https://polarwatch.noaa.gov/applications.html){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+### [Discover Datasets](https://github.com/polarwatch/data-proc-utilities/blob/main/python/access_polarwatch_stac.ipynb){target="_blank" rel="noopener noreferrer" .gallery-card-title}
 
 ::: {.gallery-card-text}
 Explore the PolarWatch catalog programmatically and access datasets through ERDDAP or HTTPS.
@@ -19,9 +19,9 @@ Explore the PolarWatch catalog programmatically and access datasets through ERDD
 
 
 ::: {.gallery-card}
-[![](style/images/lake_thumb.png){alt="Lake thumbnail"}](https://polarwatch.noaa.gov/){target="_blank" rel="noopener noreferrer"}
+[![](style/images/lake_thumb.png){alt="Lake thumbnail"}](https://github.com/polarwatch/data-proc-utilities/blob/main/python/clip_data_to_shapefile.ipynb){target="_blank" rel="noopener noreferrer"}
 
-### [Subset Data Using a Shapefile](https://polarwatch.noaa.gov/){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+### [Subset Data Using a Shapefile](https://github.com/polarwatch/data-proc-utilities/blob/main/python/clip_data_to_shapefile.ipynb){target="_blank" rel="noopener noreferrer" .gallery-card-title}
 
 ::: {.gallery-card-text}
 Follow an example to clip projected data using a shapefile in a different geographic projection.
@@ -29,9 +29,9 @@ Follow an example to clip projected data using a shapefile in a different geogra
 :::
 
 ::: {.gallery-card}
-[![](style/images/ims_thumb.png){alt="IMS thumbnail"}](about.qmd)
+[![](style/images/ims_thumb.png){alt="IMS thumbnail"}](https://github.com/polarwatch/data-proc-utilities/blob/main/python/convert_coords_projections.ipynb){target="_blank" rel="noopener noreferrer"}
 
-### [Convert Coordinates](clip_shapefile.qmd){.gallery-card-title}
+### [Convert Coordinates](https://github.com/polarwatch/data-proc-utilities/blob/main/python/convert_coords_projections.ipynb){.gallery-card-title}
 
 ::: {.gallery-card-text}
 Learn how to convert coordinates between different projections — a crucial step when working with geospatial datasets from multiple sources.
@@ -40,9 +40,9 @@ Learn how to convert coordinates between different projections — a crucial ste
 :::
 
 ::: {.gallery-card}
-[![](style/images/code_thumb.png){alt="Code thumbnail"}](https://github.com/polarwatch/code-gallery){target="_blank" rel="noopener noreferrer"}
+[![](style/images/code_thumb.png){alt="Code thumbnail"}](https://github.com/polarwatch/data-proc-utilities/blob/main/python/download_data_from_https.ipynb){target="_blank" rel="noopener noreferrer"}
 
-### [Download data](https://github.com/polarwatch/code-gallery){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+### [Download data](https://github.com/polarwatch/data-proc-utilities/blob/main/python/download_data_from_https.ipynb){target="_blank" rel="noopener noreferrer" .gallery-card-title}
 
 ::: {.gallery-card-text}
 Learn how to download data from an HTTPS source using Python, a common workflow when accessing online datasets and APIs.

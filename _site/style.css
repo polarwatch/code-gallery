@@ -16,6 +16,15 @@
 	color: #ffffff !important;
 }
 
+.navbar .quarto-search-button,
+.navbar .quarto-search-button i,
+.navbar .quarto-search-button .bi,
+.navbar #quarto-search svg,
+.navbar #quarto-search .aa-SubmitIcon {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+}
+
 footer.footer,
 footer.footer .nav-footer {
 	background-color: #2c6ead;
