@@ -1,7 +1,55 @@
 ---
-title: "code-gallery"
+title: "PolarWatch Code Gallery"
 ---
 
-This is a Quarto website.
+Browse the code examples below.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+:::: {.gallery-grid}
+
+::: {.gallery-card}
+[![](style/images/stac_thumb.png){alt="STAC thumbnail"}](https://polarwatch.noaa.gov/applications.html){target="_blank" rel="noopener noreferrer"}
+
+### [Discover Datasets](https://polarwatch.noaa.gov/applications.html){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+
+::: {.gallery-card-text}
+Explore the PolarWatch catalog programmatically and access datasets through ERDDAP or HTTPS.
+:::
+:::
+
+
+::: {.gallery-card}
+[![](style/images/lake_thumb.png){alt="Lake thumbnail"}](https://polarwatch.noaa.gov/){target="_blank" rel="noopener noreferrer"}
+
+### [Subset Data Using a Shapefile](https://polarwatch.noaa.gov/){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+
+::: {.gallery-card-text}
+Follow an example to clip projected data using a shapefile in a different geographic projection.
+:::
+:::
+
+::: {.gallery-card}
+[![](style/images/ims_thumb.png){alt="IMS thumbnail"}](about.qmd)
+
+### [Convert Coordinates](clip_shapefile.qmd){.gallery-card-title}
+
+::: {.gallery-card-text}
+Learn how to convert coordinates between different projections — a crucial step when working with geospatial datasets from multiple sources.
+
+:::
+:::
+
+::: {.gallery-card}
+[![](style/images/code_thumb.png){alt="Code thumbnail"}](https://github.com/polarwatch/code-gallery){target="_blank" rel="noopener noreferrer"}
+
+### [Download data](https://github.com/polarwatch/code-gallery){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+
+::: {.gallery-card-text}
+Learn how to download data from an HTTPS source using Python, a common workflow when accessing online datasets and APIs.
+:::
+:::
+
+
+
+
+::::

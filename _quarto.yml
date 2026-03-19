@@ -1,19 +1,47 @@
 project:
   type: website
 
+    
 website:
-  title: "code-gallery"
+  page-navigation: true
+  title: "PolarWatch code gallery"
+  description: "A collection of code examples to discover and access data from the PolarWatch catalog."
+  site-url: "https://polarwatch.noaa.gov/applications.html"
+  
+  repo-url: https://github.com/polarwatch/code-gallery
+  repo-actions: [issue]
+
+  page-footer:
+    left: "This page is built with  [Quarto](https://quarto.org/)."
+    background: "#003087"
+    right:
+    - text: "License"
+      href: LICENSE.md
+
   navbar:
+    background: "#A7D5E8"
+    # logo: "images/noaa.png"
+    align: center
+    title: false
+    collapse-below: lg
+ 
+
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - text: "NOAA PolarWatch"
+        href: https://polarwatch.noaa.gov/
+      - text: "Code Gallery"
+        href: index.qmd
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+    page-layout: full
+    theme:
+      light: "flatly"
+    css: style.css
+    toc: false
+    code-copy: true
+    code-overflow: wrap
 
+freeze: auto
 
 

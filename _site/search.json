@@ -9,8 +9,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "code-gallery",
+    "title": "PolarWatch Code Gallery",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Browse the code examples below.\n\n\n\n\nDiscover Datasets\n\nExplore the PolarWatch catalog programmatically and access datasets through ERDDAP or HTTPS.\n\n\n\n\n\n\nSubset Data Using a Shapefile\n\nFollow an example to clip projected data using a shapefile in a different geographic projection.\n\n\n\n\n\n\nConvert Coordinates\n\nLearn how to convert coordinates between different projections — a crucial step when working with geospatial datasets from multiple sources.\n\n\n\n\n\n\nDownload data\n\nLearn how to download data from an HTTPS source using Python, a common workflow when accessing online datasets and APIs."
   }
 ]

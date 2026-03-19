@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>code-gallery</title>
+<title>PolarWatch code gallery - PolarWatch Code Gallery</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-fixed">
@@ -77,11 +77,6 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">code-gallery</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -89,12 +84,12 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="https://polarwatch.noaa.gov/"> 
+<span class="menu-text">NOAA PolarWatch</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Code Gallery</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -104,23 +99,21 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">code-gallery</h1>
+<h1 class="title">PolarWatch Code Gallery</h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -132,8 +125,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<p>Browse the code examples below.</p>
+<div class="gallery-grid">
+<div class="gallery-card">
+<p><a href="https://polarwatch.noaa.gov/applications.html" target="_blank" rel="noopener noreferrer"><img src="style/images/stac_thumb.png" class="img-fluid" alt="STAC thumbnail"></a></p>
+<section id="discover-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="discover-datasets"><a href="https://polarwatch.noaa.gov/applications.html" class="gallery-card-title" target="_blank" rel="noopener noreferrer">Discover Datasets</a></h3>
+<div class="gallery-card-text">
+<p>Explore the PolarWatch catalog programmatically and access datasets through ERDDAP or HTTPS.</p>
+</div>
+</section>
+</div>
+<div class="gallery-card">
+<p><a href="https://polarwatch.noaa.gov/" target="_blank" rel="noopener noreferrer"><img src="style/images/lake_thumb.png" class="img-fluid" alt="Lake thumbnail"></a></p>
+<section id="subset-data-using-a-shapefile" class="level3">
+<h3 class="anchored" data-anchor-id="subset-data-using-a-shapefile"><a href="https://polarwatch.noaa.gov/" class="gallery-card-title" target="_blank" rel="noopener noreferrer">Subset Data Using a Shapefile</a></h3>
+<div class="gallery-card-text">
+<p>Follow an example to clip projected data using a shapefile in a different geographic projection.</p>
+</div>
+</section>
+</div>
+<div class="gallery-card">
+<p><a href="./about.html"><img src="style/images/ims_thumb.png" class="img-fluid" alt="IMS thumbnail"></a></p>
+<section id="convert-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="convert-coordinates"><a href="clip_shapefile.qmd" class="gallery-card-title">Convert Coordinates</a></h3>
+<div class="gallery-card-text">
+<p>Learn how to convert coordinates between different projections — a crucial step when working with geospatial datasets from multiple sources.</p>
+</div>
+</section>
+</div>
+<div class="gallery-card">
+<p><a href="https://github.com/polarwatch/code-gallery" target="_blank" rel="noopener noreferrer"><img src="style/images/code_thumb.png" class="img-fluid" alt="Code thumbnail"></a></p>
+<section id="download-data" class="level3">
+<h3 class="anchored" data-anchor-id="download-data"><a href="https://github.com/polarwatch/code-gallery" class="gallery-card-title" target="_blank" rel="noopener noreferrer">Download data</a></h3>
+<div class="gallery-card-text">
+<p>Learn how to download data from an HTTPS source using Python, a common workflow when accessing online datasets and APIs.</p>
+</div>
+</section>
+</div>
+</div>
 
 
 
@@ -526,6 +556,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions"><ul><li><a href="https://github.com/polarwatch/code-gallery/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="./LICENSE.md">
+<p>License</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
