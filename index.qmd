@@ -10,7 +10,7 @@ Browse selected Python code examples below.
 ::: {.gallery-card}
 [![](style/images/stac_thumb.png){alt="STAC thumbnail"}](https://github.com/polarwatch/data-proc-utilities/blob/main/python/access_polarwatch_stac.ipynb){target="_blank" rel="noopener noreferrer"}
 
-### [Discover Datasets](https://github.com/polarwatch/data-proc-utilities/blob/main/python/access_polarwatch_stac.ipynb){target="_blank" rel="noopener noreferrer" .gallery-card-title}
+### [Discover Datasets](https://github.com/polarwatch/code-gallery/tree/main/code_samples/polarwatch-catalog){target="_blank" rel="noopener noreferrer" .gallery-card-title}
 
 ::: {.gallery-card-text}
 Explore the PolarWatch catalog programmatically and access datasets through ERDDAP or HTTPS.
